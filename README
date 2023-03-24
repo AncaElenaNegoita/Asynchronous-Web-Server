@@ -1,0 +1,20 @@
+Nume: Negoita Anca-Elena
+Grupa: 321 CA 
+
+Server web asincron
+
+Pentru implementarea acestui program au fost folosite resursele date, mai precis din sample-uri:
+epoll_echo_server.c si http_parser.c
+
+Modificarile necesare au fost facute in functiile de send, request si reply pentru a respecta
+cerinta si a avea operatii asincrone pe fisiere(operarea fisierelor simultan) si operatii
+non-blocante pe socketi.
+
+La send, s-au tratat cazurile in care este o eroare de conexiune, nu este trimis tot fisierul sau
+este trimis fisierul intreg.
+
+Functia handle_client_request a fost modifica intrucat ea trebuia sa accepte operatii non-blocante
+si sa verifice ce tip de fisier este la path in momentul request-ului. Pentru a parsa HTTP-ul,
+a fost necesara analiza folderului http_parser.
+
+Functia handle_client_reply ofera raspunsul necesar in functie de tipul fisierului.
